@@ -16,6 +16,7 @@ One-page personal site for Stephen Drew, built from the approved Paper pack reco
 - Public indexing enabled with canonical and sitemap metadata
 - Stephen approved publication of the complete site, including its portrait, on 27 August 2026
 - Enquiries open a pre-addressed email to the verified public Architecture Social contact route
+- Privacy-safe Vercel Analytics hooks cover four approved interactions without sending form values or URL query data; collection remains off until Web Analytics billing and `VITE_VERCEL_WEB_ANALYTICS=true` are explicitly enabled
 
 ## Commands
 
