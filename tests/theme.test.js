@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { applyTheme, getResolvedTheme, toggleTheme } from '../src/theme.js'
+import { applyTheme, getResolvedTheme, THEME_STORAGE_KEY, toggleTheme } from '../src/theme.js'
 
 function withDom({ theme = 'dark', storageError = false }, callback) {
   const previousDocument = globalThis.document
@@ -37,7 +37,7 @@ test('theme toggle applies and persists the next theme', () => {
     assert.equal(toggleTheme(), 'light')
     assert.equal(dataset.theme, 'light')
     assert.equal(style.colorScheme, 'light')
-    assert.deepEqual(localStorage.lastWrite, ['stephen-drew-theme', 'light'])
+    assert.deepEqual(localStorage.lastWrite, [THEME_STORAGE_KEY, 'light'])
   })
 })
 

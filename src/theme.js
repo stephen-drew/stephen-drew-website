@@ -1,4 +1,4 @@
-export const THEME_STORAGE_KEY = 'stephen-drew-theme'
+export const THEME_STORAGE_KEY = 'stephen-drew-theme-v2'
 
 export function getResolvedTheme() {
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
