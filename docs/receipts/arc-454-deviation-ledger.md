@@ -19,9 +19,12 @@ The section order, wording, brand tokens, typography, breakpoints, portrait, sha
 
 | Area | Paper state | Website state | Reason |
 | --- | --- | --- | --- |
+| Initial theme | Every approved artboard opens on deep black `#161616` | A fresh visit opens dark on every computer; light remains available only after an explicit Theme choice | Uses a new preference namespace so the previous automatic system-light decision cannot override the approved first impression |
 | Theme control | The compact Paper header shows Contact only | A 44 × 44 theme button remains available beside Contact | Implements GitHub issue 1 with a keyboard-operable, persistent control at every viewport |
 | Dark blue contrast | Some desktop Paper text exports use deep black on Yale blue | Primary text is white and actions are chartreuse | Preserves the approved palette while meeting readable contrast expectations |
-| Orange card contrast | The desktop education card exports with deep-black copy on Tiger orange | The website uses white copy | Follows the Architecture Social brand contrast rule |
+| Orange card contrast | The desktop education card exports with deep-black copy on Tiger orange | The website uses the approved deep-black copy | Restores the Paper value and raises normal-text contrast from 3.12:1 to 5.80:1 |
+| Timeline category labels | Paper uses categorical colour at small sizes on off-white | The website uses approved Yale `#184574` for the timeline labels | Turquoise on off-white and the earlier darkened turquoise substitute did not reach 4.5:1 contrast |
+| Intermediate widths | Paper specifies fixed compositions at 1440, 768 and 390px | The tablet restack applies from 768px through 1360px; the mobile restack covers every width below 768px; the 1440px composition remains exact | Prevents fixed content being clipped or touching the viewport edge between the approved artboards |
 | Responsive section height | Paper uses fixed-height frames | Sections expand when local browser font metrics need more room | Prevents approved copy, buttons and captions from being clipped |
 | Portrait caption | The mobile Paper caption starts below the fixed hero frame | The website keeps the caption visible | Preserves identity and location information instead of hiding it outside the frame |
 | Shader | Paper contains an approved static shader frame | The website renders Paper NeuroNoise live, with a static fallback and reduced-motion handling | Delivers the approved live-shader direction safely |

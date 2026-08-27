@@ -1,13 +1,11 @@
 ;(function () {
-  var STORAGE_KEY = 'stephen-drew-theme'
+  var STORAGE_KEY = 'stephen-drew-theme-v2'
   var theme = 'dark'
 
   try {
     var stored = window.localStorage.getItem(STORAGE_KEY)
     if (stored === 'light' || stored === 'dark') {
       theme = stored
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      theme = 'light'
     }
   } catch {
     theme = 'dark'

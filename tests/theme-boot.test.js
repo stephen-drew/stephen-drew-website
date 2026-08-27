@@ -26,15 +26,16 @@ function executeBoot({ stored = null, prefersLight = false, storageThrows = fals
   return root
 }
 
-test('stored theme wins over the system preference', () => {
-  const root = executeBoot({ stored: 'dark', prefersLight: true })
-  assert.equal(root.dataset.theme, 'dark')
-  assert.equal(root.style.colorScheme, 'dark')
+test('an explicit stored theme remains available', () => {
+  const root = executeBoot({ stored: 'light', prefersLight: false })
+  assert.equal(root.dataset.theme, 'light')
+  assert.equal(root.style.colorScheme, 'light')
 })
 
-test('system preference is used when no theme is stored', () => {
-  assert.equal(executeBoot({ prefersLight: true }).dataset.theme, 'light')
+test('fresh visits use the approved dark theme regardless of system preference', () => {
+  assert.equal(executeBoot({ prefersLight: true }).dataset.theme, 'dark')
   assert.equal(executeBoot({ prefersLight: false }).dataset.theme, 'dark')
+  assert.match(bootScript, /stephen-drew-theme-v2/)
 })
 
 test('blocked storage fails closed to the approved dark theme', () => {

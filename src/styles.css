@@ -603,7 +603,7 @@ h3 {
 }
 
 .architecture-card--tiger {
-  color: #fff;
+  color: var(--ink);
   background: var(--tiger);
 }
 
@@ -811,12 +811,9 @@ h3 {
   line-height: 24px;
 }
 
-.text-turquoise {
-  color: #237f71;
-}
-
+.text-turquoise,
 .text-tiger {
-  color: #bd3610;
+  color: var(--yale);
 }
 
 .contact-choices {
@@ -1052,7 +1049,7 @@ h3 {
   text-transform: uppercase;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1360px) {
   .copy-desktop,
   .desktop-caption {
     display: none;
@@ -1292,14 +1289,6 @@ h3 {
     line-height: 18px;
   }
 
-  .architecture-card--turquoise .architecture-card__label {
-    color: #237f71;
-  }
-
-  .architecture-card--tiger .architecture-card__label {
-    color: #bd3610;
-  }
-
   .architecture-card > div {
     gap: 8px;
   }
@@ -1526,7 +1515,7 @@ h3 {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .site-header {
     height: 72px;
     padding: 0 16px;

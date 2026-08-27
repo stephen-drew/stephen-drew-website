@@ -44,6 +44,32 @@ test('the responsive shell keeps visible focus and accessible light-theme accent
   assert.match(styles, /--accent-on-canvas: #184574/)
 })
 
+test('the approved palette remains exact and the QC correction removes low-contrast substitutes', () => {
+  const approvedTokens = [
+    '--ink: #161616',
+    '--off-white: #e6e6e6',
+    '--chartreuse: #e6f421',
+    '--turquoise: #5adbc5',
+    '--tiger: #ff5a20',
+    '--yale: #184574',
+  ]
+
+  for (const token of approvedTokens) assert.match(styles, new RegExp(token))
+  assert.match(styles, /\.architecture-card--tiger\s*{[^}]*color:\s*var\(--ink\)/s)
+  assert.match(styles, /\.text-turquoise,\s*\.text-tiger\s*{[^}]*color:\s*var\(--yale\)/s)
+  assert.doesNotMatch(styles, /#237f71|#bd3610/)
+})
+
+test('the tablet composition covers the narrow desktop clipping range', () => {
+  assert.match(styles, /@media \(max-width: 1360px\)/)
+  assert.doesNotMatch(styles, /@media \(max-width: 1024px\)/)
+})
+
+test('the mobile restack covers every width below the approved 768px tablet frame', () => {
+  assert.match(styles, /@media \(max-width: 767px\)/)
+  assert.doesNotMatch(styles, /@media \(max-width: 640px\)/)
+})
+
 test('the shader has static reduced-motion and WebGL failure paths', () => {
   assert.match(app, /prefers-reduced-motion: reduce/)
   assert.match(app, /supportsWebGL/)
