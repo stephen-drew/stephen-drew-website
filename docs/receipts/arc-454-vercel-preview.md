@@ -2,6 +2,8 @@
 
 Date: 26 August 2026
 
+Status: historical Preview evidence. The public launch completed on 27 August 2026 and is recorded in `arc-454-production-launch.md`.
+
 ## Title-corrected Preview revision
 
 Date: 27 August 2026
@@ -86,7 +88,7 @@ The desktop theme control changed its persisted state. The reduced-motion captur
 
 Vercel classified this new project's first CLI deployment as Production even though `--target=preview` was supplied. The exact unintended deployment `dpl_6RrVtAsLxrQUWxsG9Ge7M7RsvzCj` and its alias were removed immediately. A 261-byte noindex bootstrap was then used to unlock the second-deployment Preview route; bootstrap deployment `dpl_3SKA9DaBbpAy13r5Q3NWqeHVQr5i` and its generated alias were removed after the real Preview became Ready. The final state read-back above confirms that only the Preview remains.
 
-## Held scope
+## Held scope at the time of the Preview
 
 - No `stephendrew.com` DNS record or custom domain was changed.
 - No Production deployment or alias remains.
@@ -94,4 +96,4 @@ Vercel classified this new project's first CLI deployment as Production even tho
 - The portrait is present only on the protected, noindex Preview.
 - The enquiry form opens a pre-addressed email to the verified `hello@architecturesocial.com` route and stores no form data.
 
-Stephen's Preview review, portrait-rights confirmation and separate Production/domain approval remain the next gates.
+These were the remaining gates at the time of this receipt. Stephen subsequently approved the complete public site, including its portrait, and authorised Production plus both web-record changes on 27 August 2026. All gates are now cleared.

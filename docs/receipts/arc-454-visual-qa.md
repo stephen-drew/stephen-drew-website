@@ -2,6 +2,8 @@
 
 Date: 26 August 2026
 
+Status: historical local QA evidence. The public launch completed on 27 August 2026 and is recorded in `arc-454-production-launch.md`.
+
 ## Scope
 
 Local rendered verification of the approved Stephen Drew one-page website before GitHub and Vercel Preview delivery.
@@ -23,7 +25,7 @@ Local rendered verification of the approved Stephen Drew one-page website before
 - The contact destination is the verified `hello@architecturesocial.com` address.
 - The approved 27 August title correction now leads with `Founder & Director`; rendered checks at 1440, 768 and 390px showed no horizontal overflow, title or portrait-caption wrapping defects, or console errors. Full-page captures are `output/playwright/title-desktop.png`, `title-tablet.png` and `title-mobile.png`.
 - The unverified `hello@stephendrew.com` address is absent.
-- HTML metadata, robots.txt and Vercel response headers are configured for noindex, nofollow and noarchive.
+- At the time of this local Preview check, HTML metadata, robots.txt and Vercel response headers were configured for noindex, nofollow and noarchive. Public-launch indexing replaced that temporary state on 27 August 2026.
 - Reduced-motion users receive a static shader state.
 
 ## Captured breakpoints
@@ -35,10 +37,10 @@ Local rendered verification of the approved Stephen Drew one-page website before
 
 Local captures are stored under `output/playwright/` and intentionally excluded from Git.
 
-## Delivery boundary
+## Delivery boundary at the time of this receipt
 
-- Approved for a noindex Vercel Preview.
-- Production promotion, Vercel domain aliasing and Cloudflare DNS remain out of scope.
-- Portrait rights still require confirmation before a public cutover.
+- This receipt authorised only the noindex Vercel Preview that preceded launch.
+- Stephen subsequently approved publication of the complete site, including its portrait, and authorised the Production and DNS cutover on 27 August 2026.
+- Production promotion, Vercel domain aliasing and the two Cloudflare web-record changes are complete and recorded in `arc-454-production-launch.md`.
 - The enquiry form opens the visitor's email application. It does not submit or store data on a server.
 - If no email application opens, the form shows the verified direct email address on the page.
