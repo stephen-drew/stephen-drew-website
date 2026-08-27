@@ -1,5 +1,7 @@
 import { Component, useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { NeuroNoise } from '@paper-design/shaders-react'
+import { ANALYTICS_ENABLED, ANALYTICS_EVENTS, redactAnalyticsEvent, trackInteraction } from './analytics.js'
 import { buildEnquiryMailto, CONTACT_EMAIL } from './contact.js'
 import { getResolvedTheme, toggleTheme } from './theme.js'
 
@@ -105,8 +107,9 @@ function ShaderField() {
   )
 }
 
-function ExternalLink({ className = '', href, children }) {
-  return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>
+function ExternalLink({ className = '', href, children, analyticsEvent }) {
+  const handleClick = analyticsEvent ? () => trackInteraction(analyticsEvent) : undefined
+  return <a className={className} href={href} target="_blank" rel="noreferrer" onClick={handleClick}>{children}</a>
 }
 
 function Header() {
@@ -136,8 +139,8 @@ function Hero() {
           <h1 id="hero-title">Architecture.<br />Recruitment.<br />Systems that work.</h1>
           <p className="hero__lead">I’m Stephen Drew, Founder &amp; Director of Architecture Social. Half of this practice is about architecture, people and the built environment. The other half helps recruitment businesses turn messy processes into working systems.</p>
           <div className="hero__actions">
-            <ExternalLink className="button button--chartreuse" href={ARCHITECTURE_SOCIAL_URL}>Explore Architecture Social</ExternalLink>
-            <a className="button button--outline" href="#consulting">AI consulting for recruitment businesses</a>
+            <ExternalLink className="button button--chartreuse" href={ARCHITECTURE_SOCIAL_URL} analyticsEvent={ANALYTICS_EVENTS.ARCHITECTURE_SOCIAL_OUTBOUND}>Explore Architecture Social</ExternalLink>
+            <a className="button button--outline" href="#consulting" onClick={() => trackInteraction(ANALYTICS_EVENTS.AI_CONSULTING_INTEREST)}>AI consulting for recruitment businesses</a>
           </div>
         </div>
         <figure className="portrait">
@@ -153,8 +156,10 @@ function Hero() {
   )
 }
 
-function FieldCard({ className, eyebrow, title, body, href, children, external = false }) {
-  const link = external ? <ExternalLink href={href}>{children}</ExternalLink> : <a href={href}>{children}</a>
+function FieldCard({ className, eyebrow, title, body, href, children, external = false, analyticsEvent }) {
+  const link = external
+    ? <ExternalLink href={href} analyticsEvent={analyticsEvent}>{children}</ExternalLink>
+    : <a href={href} onClick={analyticsEvent ? () => trackInteraction(analyticsEvent) : undefined}>{children}</a>
   return (
     <article className={`field-card ${className}`}>
       <div>
@@ -175,8 +180,8 @@ function Fields() {
         <p>Two routes into the same founder practice.</p>
       </div>
       <div className="fields__cards">
-        <FieldCard className="field-card--architecture" eyebrow="01 / Architecture Social" title="Architecture, careers and culture." body="Careers, community and conversation for architecture and the built environment." href={ARCHITECTURE_SOCIAL_URL} external>Enter Architecture Social ↗</FieldCard>
-        <FieldCard className="field-card--systems" eyebrow="02 / Recruitment systems" title="Recruitment systems that work." body="Find the constraint, redesign one workflow and leave ownership with the team." href="#enquiry">Bring me the messy process ↗</FieldCard>
+        <FieldCard className="field-card--architecture" eyebrow="01 / Architecture Social" title="Architecture, careers and culture." body="Careers, community and conversation for architecture and the built environment." href={ARCHITECTURE_SOCIAL_URL} external analyticsEvent={ANALYTICS_EVENTS.ARCHITECTURE_SOCIAL_OUTBOUND}>Enter Architecture Social ↗</FieldCard>
+        <FieldCard className="field-card--systems" eyebrow="02 / Recruitment systems" title="Recruitment systems that work." body="Find the constraint, redesign one workflow and leave ownership with the team." href="#enquiry" analyticsEvent={ANALYTICS_EVENTS.AI_CONSULTING_INTEREST}>Bring me the messy process ↗</FieldCard>
       </div>
     </section>
   )
@@ -199,7 +204,7 @@ function ArchitectureChapter() {
           <article className={`architecture-card ${card.className}`} key={card.label}>
             <p className="eyebrow architecture-card__label">{card.label}</p>
             <div><h3><span className={card.desktopTitle ? 'copy-compact' : ''}>{card.title}</span>{card.desktopTitle ? <span className="copy-desktop">{card.desktopTitle}</span> : null}</h3><p>{card.body}</p></div>
-            <ExternalLink href={card.href}>{card.action}</ExternalLink>
+            <ExternalLink href={card.href} analyticsEvent={card.href === LINKEDIN_URL ? ANALYTICS_EVENTS.LINKEDIN_OUTBOUND : ANALYTICS_EVENTS.ARCHITECTURE_SOCIAL_OUTBOUND}>{card.action}</ExternalLink>
           </article>
         ))}
       </div>
@@ -217,7 +222,7 @@ function ConsultingChapter() {
       <ol className="method-list">
         {methodRows.map(([title, body], index) => <li key={title}><strong><span className="method-index">0{index + 1} / </span>{title}</strong><span>{body}</span></li>)}
       </ol>
-      <a className="button button--yale consulting__button" href="#enquiry">Start with one workflow ↗</a>
+      <a className="button button--yale consulting__button" href="#enquiry" onClick={() => trackInteraction(ANALYTICS_EVENTS.AI_CONSULTING_INTEREST)}>Start with one workflow ↗</a>
     </section>
   )
 }
@@ -250,8 +255,8 @@ function ContactChoices() {
     <section className="contact-choices" id="contact" aria-labelledby="contact-title">
       <div className="contact-choices__heading"><p className="eyebrow">Contact</p><h2 id="contact-title">Two fields. Two useful next steps.</h2></div>
       <div className="contact-choices__cards">
-        <article><div><h3>Architecture, people and practice</h3><p>Visit Architecture Social for careers, recruitment, community, the podcast and built-environment conversations.</p></div><ExternalLink href={ARCHITECTURE_SOCIAL_URL}>Visit Architecture Social ↗</ExternalLink></article>
-        <article><div><h3>AI consulting for recruitment businesses</h3><p>Tell me where your agency loses time, margin or operational clarity. I’ll tell you where a focused engagement could help.</p></div><a href="#enquiry">Start a consulting enquiry ↗</a></article>
+        <article><div><h3>Architecture, people and practice</h3><p>Visit Architecture Social for careers, recruitment, community, the podcast and built-environment conversations.</p></div><ExternalLink href={ARCHITECTURE_SOCIAL_URL} analyticsEvent={ANALYTICS_EVENTS.ARCHITECTURE_SOCIAL_OUTBOUND}>Visit Architecture Social ↗</ExternalLink></article>
+        <article><div><h3>AI consulting for recruitment businesses</h3><p>Tell me where your agency loses time, margin or operational clarity. I’ll tell you where a focused engagement could help.</p></div><a href="#enquiry" onClick={() => trackInteraction(ANALYTICS_EVENTS.AI_CONSULTING_INTEREST)}>Start a consulting enquiry ↗</a></article>
       </div>
     </section>
   )
@@ -267,6 +272,7 @@ function EnquiryForm() {
     const email = String(data.get('email') || '').trim()
     const business = String(data.get('business') || '').trim()
     const message = String(data.get('message') || '').trim()
+    trackInteraction(ANALYTICS_EVENTS.CONSULTING_EMAIL_HANDOFF)
     setStatus('If your email app did not open, use the direct address below.')
     window.location.assign(buildEnquiryMailto({ name, email, business, message }))
   }
@@ -291,7 +297,7 @@ function EnquiryForm() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="site-footer__top"><div><strong>Stephen Drew</strong><span>Founder &amp; Director · Architecture Social</span></div><nav aria-label="Footer navigation"><ExternalLink href={ARCHITECTURE_SOCIAL_URL}>Architecture Social ↗</ExternalLink><ExternalLink href={LINKEDIN_URL}>LinkedIn ↗</ExternalLink><ExternalLink href={PRIVACY_URL}>Privacy</ExternalLink><span>© 2026 Stephen Drew.</span></nav></div>
+      <div className="site-footer__top"><div><strong>Stephen Drew</strong><span>Founder &amp; Director · Architecture Social</span></div><nav aria-label="Footer navigation"><ExternalLink href={ARCHITECTURE_SOCIAL_URL} analyticsEvent={ANALYTICS_EVENTS.ARCHITECTURE_SOCIAL_OUTBOUND}>Architecture Social ↗</ExternalLink><ExternalLink href={LINKEDIN_URL} analyticsEvent={ANALYTICS_EVENTS.LINKEDIN_OUTBOUND}>LinkedIn ↗</ExternalLink><ExternalLink href={PRIVACY_URL}>Privacy</ExternalLink><span>© 2026 Stephen Drew.</span></nav></div>
       <div className="site-footer__bottom"><strong><span className="copy-desktop">Architecture · Recruitment · AI</span><span className="copy-compact">Architecture · Recruitment · Systems</span></strong><span><span className="copy-desktop">Built from architecture, recruitment and real operating work.</span><span className="copy-compact">Built from real operating work.</span></span></div>
     </footer>
   )
@@ -314,6 +320,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      {ANALYTICS_ENABLED ? <Analytics beforeSend={redactAnalyticsEvent} /> : null}
     </div>
   )
 }
