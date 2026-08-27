@@ -10,12 +10,11 @@ One-page personal site for Stephen Drew, built from the approved Paper pack reco
 - Mobile: 390px
 - Approved by Stephen Drew on 26 August 2026
 
-## Delivery boundary
+## Public launch
 
-- Vercel Preview only
-- `noindex, nofollow, noarchive` in HTML, `robots.txt` and Vercel headers
-- No Production alias or `stephendrew.com` DNS change
-- Portrait is approved only for noindex Preview pending public-rights confirmation
+- Vercel Production at `stephendrew.com`
+- Public indexing enabled with canonical and sitemap metadata
+- Stephen approved publication of the complete site, including its portrait, on 27 August 2026
 - Enquiries open a pre-addressed email to the verified public Architecture Social contact route
 
 ## Commands
