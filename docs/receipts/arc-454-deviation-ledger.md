@@ -26,7 +26,7 @@ The section order, wording, brand tokens, typography, breakpoints, portrait, sha
 | Portrait caption | The mobile Paper caption starts below the fixed hero frame | The website keeps the caption visible | Preserves identity and location information instead of hiding it outside the frame |
 | Shader | Paper contains an approved static shader frame | The website renders Paper NeuroNoise live, with a static fallback and reduced-motion handling | Delivers the approved live-shader direction safely |
 | Enquiry action | Paper shows a visual form | The website validates the fields and opens a pre-addressed email to `hello@architecturesocial.com` | Uses the verified public contact route without adding an unapproved data processor or backend |
-| Preview privacy | Not visible in the artboards | HTML, robots.txt and Vercel headers use noindex, nofollow and noarchive | Keeps the portrait and unfinished domain cutover out of public indexing |
+| Public indexing | Not visible in the artboards | HTML uses `index, follow`, `robots.txt` allows crawling and the sitemap names the canonical apex domain | Publishes the approved Production site at `https://stephendrew.com/` without a stale Preview restriction |
 
 ## Height read-back
 
