@@ -28,7 +28,7 @@ test('the unverified personal email is absent', () => {
 })
 
 test('public launch metadata is indexable and canonical', () => {
-  assert.match(index, /<meta name="robots" content="index, follow"/)
+  assert.match(index, /<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/)
   assert.match(index, /<link rel="canonical" href="https:\/\/stephendrew\.com\/"/)
   assert.match(index, /<meta property="og:url" content="https:\/\/stephendrew\.com\/"/)
   assert.match(index, /<meta property="og:image" content="https:\/\/stephendrew\.com\/images\/stephen-drew\.jpg"/)
@@ -36,6 +36,7 @@ test('public launch metadata is indexable and canonical', () => {
   assert.match(robots, /Allow: \//)
   assert.match(robots, /Sitemap: https:\/\/stephendrew\.com\/sitemap\.xml/)
   assert.match(sitemap, /<loc>https:\/\/stephendrew\.com\/<\/loc>/)
+  assert.match(sitemap, /<lastmod>2026-08-28<\/lastmod>/)
 })
 
 test('the responsive shell keeps visible focus and accessible light-theme accents', () => {

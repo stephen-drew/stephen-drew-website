@@ -1,0 +1,53 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://stephendrew.com/#website",
+      "url": "https://stephendrew.com/",
+      "name": "Stephen Drew",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://stephendrew.com/#person" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://stephendrew.com/#profile",
+      "url": "https://stephendrew.com/",
+      "name": "Stephen Drew | Founder, Architecture Social & AI Consultant",
+      "description": "Stephen Drew is Founder & Director of Architecture Social and a practical AI consultant helping recruitment businesses improve systems and workflows.",
+      "inLanguage": "en-GB",
+      "isPartOf": { "@id": "https://stephendrew.com/#website" },
+      "mainEntity": { "@id": "https://stephendrew.com/#person" },
+      "primaryImageOfPage": { "@id": "https://stephendrew.com/#portrait" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://stephendrew.com/#person",
+      "name": "Stephen Drew",
+      "url": "https://stephendrew.com/",
+      "description": "Founder & Director of Architecture Social and practical AI consultant for recruitment businesses.",
+      "jobTitle": "Founder & Director, Architecture Social",
+      "image": { "@id": "https://stephendrew.com/#portrait" },
+      "worksFor": { "@id": "https://architecturesocial.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/in/stephendrew/",
+        "https://architecturesocial.com/people/stephen-drew/"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://architecturesocial.com/#organization",
+      "name": "Architecture Social",
+      "url": "https://architecturesocial.com/"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://stephendrew.com/#portrait",
+      "url": "https://stephendrew.com/images/stephen-drew.jpg",
+      "contentUrl": "https://stephendrew.com/images/stephen-drew.jpg",
+      "width": 800,
+      "height": 800,
+      "caption": "Stephen Drew"
+    }
+  ]
+}
